@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: cn.imlibo:FilePicker:v0.0.5_alpha@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a79040e4efa8065cdb5241b6d231de5a/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a79040e4efa8065cdb5241b6d231de5a/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a79040e4efa8065cdb5241b6d231de5a/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.imlibo/FilePicker/v0.0.5_alpha/d5b4b04f56f52ad9ba109c77517480bcdfae79b4/FilePicker-v0.0.5_alpha-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

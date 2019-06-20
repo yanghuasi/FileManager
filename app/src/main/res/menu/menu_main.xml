@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/delete"
+        android:orderInCategory="100"
+        android:title="删除"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/copy"
+        android:orderInCategory="100"
+        android:title="复制"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/cut"
+        android:orderInCategory="100"
+        android:title="剪切"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/paste"
+        android:orderInCategory="100"
+        android:title="粘贴"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/rename"
+        android:orderInCategory="100"
+        android:title="重命名"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/share"
+        android:orderInCategory="100"
+        android:title="分享"
+        app:showAsAction="never"/>
+</menu>
