@@ -28,8 +28,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import seekbar.ggh.com.myapplication.FileUtils;
-import seekbar.ggh.com.myapplication.ImgFolderBean;
+import utils.FileUtils;
 import seekbar.ggh.com.myapplication.R;
 import utils.FileManager;
 

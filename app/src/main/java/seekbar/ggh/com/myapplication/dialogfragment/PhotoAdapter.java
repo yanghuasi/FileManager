@@ -10,7 +10,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 
-import seekbar.ggh.com.myapplication.ImgFolderBean;
+import seekbar.ggh.com.myapplication.manager.ImgFolderBean;
 import seekbar.ggh.com.myapplication.R;
 
 

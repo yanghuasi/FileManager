@@ -12,7 +12,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seekbar.ggh.com.myapplication.ImgFolderBean;
 import seekbar.ggh.com.myapplication.R;
 
 public class MutilFileAdapter extends BaseQuickAdapter<ImgFolderBean, BaseViewHolder> {

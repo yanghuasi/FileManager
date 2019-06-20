@@ -1,4 +1,4 @@
-package seekbar.ggh.com.myapplication;
+package seekbar.ggh.com.myapplication.manager;
 
 public class ImgFolderBean {
     /**当前文件夹的路径*/

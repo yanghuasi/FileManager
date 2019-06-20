@@ -12,7 +12,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +27,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import seekbar.ggh.com.myapplication.FileUtils;
-import seekbar.ggh.com.myapplication.ImgFolderBean;
+import utils.FileUtils;
+import seekbar.ggh.com.myapplication.manager.ImgFolderBean;
 import seekbar.ggh.com.myapplication.R;
 import utils.ScreenUtil;
 

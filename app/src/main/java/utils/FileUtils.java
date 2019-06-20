@@ -1,4 +1,4 @@
-package seekbar.ggh.com.myapplication;
+package utils;
 
 import android.app.Activity;
 import android.content.ContentResolver;
