@@ -1,25 +1,31 @@
 package seekbar.ggh.com.myapplication;
 
 import android.app.Activity;
-import android.app.Fragment;
+
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import seekbar.ggh.com.myapplication.dialogfragment.OutSideDialogFragment;
+
 
 public class OutSideFragment extends Fragment {
     private Button manager;
+    private Button dialog;
+    private Button classify;
     /**
      * Activity跳转到Fragment第1步
      */
     MainActivity.FragmentChanger fragmentChanger;
     MutilFileFragment fg;
+    OutSideDialogFragment outSideFragment;
     Activity activity;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,8 @@ public class OutSideFragment extends Fragment {
             final View view = inflater.inflate( R.layout.fragment_outside, null );
             //view.findViewById();
             manager = (Button) view.findViewById (R.id.manager);
+            dialog= (Button) view.findViewById (R.id.dialog);
+            classify= (Button) view.findViewById (R.id.classify);
             final String path = Environment.getExternalStorageDirectory().getAbsolutePath();
             final String name =Environment.getExternalStorageDirectory().getName();
 
@@ -61,6 +69,16 @@ public class OutSideFragment extends Fragment {
 
                     }
 
+                }
+            });
+            dialog.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (outSideFragment == null) {
+                        outSideFragment = new OutSideDialogFragment();
+                        fragmentChanger.changeFragment(outSideFragment);
+
+                    }
                 }
             });
             return view;

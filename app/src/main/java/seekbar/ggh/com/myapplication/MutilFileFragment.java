@@ -4,7 +4,8 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
-import android.app.Fragment;
+
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -44,7 +45,7 @@ public class MutilFileFragment extends Fragment {
      * 记录选中的ｃｈｅｃｋｂｏｘ
      */
     private List<String> checkList;
-
+    private List<String> checkListPath;
     private List<MutilFileEntity> entities;
 
     public static MutilFileFragment newInstance() {
@@ -81,7 +82,7 @@ public class MutilFileFragment extends Fragment {
         mRcv = (RecyclerView) view.findViewById(R.id.rv);
         all = view.findViewById(R.id.all);
         checkList = new ArrayList<>();
-
+        checkListPath= new ArrayList<>();
         entities = new ArrayList<>();
         MutilFileEntity newEntity = new MutilFileEntity("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542721963681&di=e7247350673c1e4dca62862ee9c3368b&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F0%2F53b4b747b9094.jpg");
         MutilFileEntity newEntity1 = new MutilFileEntity("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542721963681&di=47f5c7a5dfcec7a144dabf36f04b3a8d&imgtype=0&src=http%3A%2F%2Fwww.znsfagri.com%2Fuploadfile%2Feditor%2Fimage%2F20170626%2F20170626151136_11631.jpg");
@@ -124,6 +125,7 @@ public class MutilFileFragment extends Fragment {
                     //遍历所有item 获取其position——i
                     for (i = 0; i < mMutilFileAdapter.getItemCount(); i++) {
                         checkList.add(String.valueOf(i));//添加勾选的item——全部
+//                        checkListPath.add();
                         //position就刷新第几个的checkbox的选中状态
                         mMutilFileAdapter.setCheckStatus(i);//勾选item——全部
                     }

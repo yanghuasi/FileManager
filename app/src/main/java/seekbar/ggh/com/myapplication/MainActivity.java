@@ -1,11 +1,11 @@
 package seekbar.ggh.com.myapplication;
 
-import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.app.FragmentTransaction;
+
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -76,13 +76,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void changeFragment(Fragment fragment) {
                 if (oldFragment != fragment) oldFragment = fragment;
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction
                         .replace(R.id.container, fragment)
                         .commit();
             }
         };
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fg = new OutSideFragment();
         fragmentTransaction.add(R.id.container, fg, "outside").commit();
 //        btn=(Button)findViewById(R.id.btn);
