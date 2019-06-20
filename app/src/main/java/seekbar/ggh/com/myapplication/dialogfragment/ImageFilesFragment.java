@@ -122,12 +122,13 @@ public class ImageFilesFragment extends DialogFragment {
                 ImgFolderBean current = fileImagesAdapter.getItem(position);
                 String imgpath=current.getDir();
                 String name=current.getName();
+                fileImagesAdapter.setNewData(getFiles(imgpath));
 
-                if (listener!=null){
-                        listener.onItemClick(imgpath,name);//打开文件夹
-                        Log.i("imgPath", "发送成功");
-
-                }
+//                if (listener!=null){
+//                        listener.onItemClick(imgpath,name);//打开文件夹
+//                        Log.i("imgPath", "发送成功");
+//
+//                }
 
                 if (mChoseImageCallback!=null && current.isFile()){
                     mChoseImageCallback.onChoseImage(imgpath);

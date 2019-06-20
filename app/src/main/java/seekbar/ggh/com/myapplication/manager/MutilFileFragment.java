@@ -1,4 +1,4 @@
-package seekbar.ggh.com.myapplication;
+package seekbar.ggh.com.myapplication.manager;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +28,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import seekbar.ggh.com.myapplication.FileUtils;
+import seekbar.ggh.com.myapplication.ImgFolderBean;
+import seekbar.ggh.com.myapplication.R;
 import utils.FileManager;
 
 public class MutilFileFragment extends Fragment {

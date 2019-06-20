@@ -2,8 +2,6 @@ package seekbar.ggh.com.myapplication;
 
 import android.app.Activity;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
@@ -14,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import seekbar.ggh.com.myapplication.dialogfragment.OutSideDialogFragment;
+import seekbar.ggh.com.myapplication.manager.MutilFileFragment;
 
 
 public class OutSideFragment extends Fragment {

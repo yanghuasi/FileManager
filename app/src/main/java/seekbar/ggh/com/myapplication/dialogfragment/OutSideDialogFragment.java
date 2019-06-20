@@ -11,7 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import seekbar.ggh.com.myapplication.MutilFileFragment;
+import seekbar.ggh.com.myapplication.MainActivity;
+import seekbar.ggh.com.myapplication.manager.MutilFileFragment;
 import seekbar.ggh.com.myapplication.R;
 
 

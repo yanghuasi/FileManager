@@ -1,4 +1,4 @@
-package seekbar.ggh.com.myapplication;
+package seekbar.ggh.com.myapplication.manager;
 
 import android.support.annotation.Nullable;
 import android.widget.CheckBox;
@@ -11,6 +11,9 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import seekbar.ggh.com.myapplication.ImgFolderBean;
+import seekbar.ggh.com.myapplication.R;
 
 public class MutilFileAdapter extends BaseQuickAdapter<ImgFolderBean, BaseViewHolder> {
 
