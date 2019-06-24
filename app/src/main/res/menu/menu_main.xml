@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    <item
+        android:id="@+id/download"
+        android:orderInCategory="100"
+        android:title="下载"
+        app:showAsAction="never"/>
     <item
         android:id="@+id/delete"
         android:orderInCategory="100"
@@ -13,14 +17,14 @@
         android:title="复制"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/cut"
+        android:id="@+id/move"
         android:orderInCategory="100"
-        android:title="剪切"
+        android:title="移动"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/paste"
+        android:id="@+id/like"
         android:orderInCategory="100"
-        android:title="粘贴"
+        android:title="收藏"
         app:showAsAction="never"/>
     <item
         android:id="@+id/rename"
@@ -31,5 +35,20 @@
         android:id="@+id/share"
         android:orderInCategory="100"
         android:title="分享"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/imformation"
+        android:orderInCategory="100"
+        android:title="查看详情信息"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/order_name"
+        android:orderInCategory="100"
+        android:title="按名称排序"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/order_time"
+        android:orderInCategory="100"
+        android:title="按时间排序"
         app:showAsAction="never"/>
 </menu>

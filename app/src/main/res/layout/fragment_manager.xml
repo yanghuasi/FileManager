@@ -1,52 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="#6CC4B8">
+
         <CheckBox
             android:id="@+id/all"
-            android:layout_width="100dp"
+            android:layout_width="50dp"
             android:layout_height="100dp"
             android:layout_marginRight="4dp"
             android:layout_marginBottom="2dp"
             android:clickable="false"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="50dp"
+            android:src="@drawable/ic_back" />
+
         <TextView
-            android:textColor="#fff"
-            android:gravity="center"
-            android:layout_centerInParent="true"
             android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
             android:text="图片长按多选"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp" />
-        <TextView
             android:textColor="#fff"
-            android:gravity="center"
-            android:layout_centerVertical="true"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/classify"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
-            android:id="@+id/upload"
-            android:text="上传"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp" />
-        <TextView
-            android:textColor="#fff"
             android:gravity="center"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="80dp"
-            android:id="@+id/menu"
-            android:text="菜单"
+            android:text="分类"
+            android:textColor="#fff" />
+
+        <ImageView
+            android:id="@+id/add"
             android:layout_width="wrap_content"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="80dp"
+            android:gravity="center"
+            android:src="@drawable/ic_add" />
+
+
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/dp_40">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_search"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:hint="搜索文件"/>
+    </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="40dp">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_marginTop="80dp"></android.support.v7.widget.RecyclerView>
 </RelativeLayout>
