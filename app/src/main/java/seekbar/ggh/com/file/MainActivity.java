@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.wkp.runtimepermissions.callback.PermissionCallBack;
 import com.wkp.runtimepermissions.util.RuntimePermissionUtil;
 
+import seekbar.ggh.com.file.manager.MutilFileFragment;
 import seekbar.ggh.com.myapplication.R;
 
 
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public static FragmentChanger fragmentChanger;//Fragment切换接口实现
     private Fragment oldFragment = null;
-    private OutSideFragment fg;
+    private MutilFileFragment fg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fg = new OutSideFragment();
+        fg = new MutilFileFragment();
         fragmentTransaction.add(R.id.container, fg, "outside").commit();
 //        btn=(Button)findViewById(R.id.btn);
 //        btn.setOnClickListener(new View.OnClickListener() {

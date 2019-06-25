@@ -426,20 +426,6 @@ public class MutilFileFragment extends Fragment {
         }
         return isImageFile;
     }
-    @SuppressLint("DefaultLocale")
-    private boolean checkIsMusicFile(String fName) {
-        boolean isMusicFile = false;
-        // 获取扩展名
-        String FileEnd = fName.substring(fName.lastIndexOf(".") + 1,
-                fName.length()).toLowerCase();
-        if (FileEnd.equals("amr") || FileEnd.equals("png")
-                || FileEnd.equals("jpeg") || FileEnd.equals("bmp")) {
-            //|| FileEnd.equals("gif")
-            isMusicFile = true;
-        } else {
-            isMusicFile = false;
-        }
-        return isMusicFile;
-    }
+
 
 }

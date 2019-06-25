@@ -14,6 +14,7 @@ import seekbar.ggh.com.file.classify.adapter.VideoAdapter;
 import seekbar.ggh.com.myapplication.R;
 import utils.AudioUtils;
 import utils.FileManager;
+import utils.VideoUtils;
 
 public class VideoFragemnt extends Fragment {
     private RecyclerView rv;
@@ -24,8 +25,8 @@ public class VideoFragemnt extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_manager, null);
         rv=view.findViewById(R.id.rv);
 
-        rv.setLayoutManager(new GridLayoutManager(getActivity(),5));
-        adapter = new VideoAdapter(FileManager.getVideos());
+        rv.setLayoutManager(new GridLayoutManager(getActivity(),3));
+        adapter = new VideoAdapter(VideoUtils.getAllVideo(getActivity()));
         rv.setAdapter(adapter);
         return view;
     }

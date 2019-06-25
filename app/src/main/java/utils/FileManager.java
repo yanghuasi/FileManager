@@ -1008,7 +1008,7 @@ public final class FileManager {
 					new String[]{"image/jpeg", "image/png"}, MediaStore.Images.Media.DATE_MODIFIED);
 			List<String> mDirs = new ArrayList<String>();//用于保存已经添加过的文件夹目录
 			while (c.moveToNext()) {
-				String path = c.getString(c.getColumnIndex(MediaStore.Images.Media.DATA));// 路径
+				String path = c.getString(c.getColumnIndex(MediaStore.Images.Media.DATA));// 路 Cursor query径
 				File parentFile = new File(path).getParentFile();
 				if (parentFile == null)
 					continue;
@@ -1077,11 +1077,11 @@ public final class FileManager {
 	/**
 	 * 获取已安装apk的列表
 	 */
-	public List<AppInfo> getAppInfos() {
+	public static List<AppInfo> getAppInfos(Context context) {
 
 		ArrayList<AppInfo> appInfos = new ArrayList<AppInfo>();
 		//获取到包的管理者
-		PackageManager packageManager = mContext.getPackageManager();
+		PackageManager packageManager = context.getPackageManager();
 		//获得所有的安装包
 		List<PackageInfo> installedPackages = packageManager.getInstalledPackages(0);
 

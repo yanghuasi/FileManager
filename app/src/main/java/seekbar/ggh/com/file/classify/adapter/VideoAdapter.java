@@ -10,20 +10,23 @@ import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 
+import seekbar.ggh.com.file.bean.MMM;
 import seekbar.ggh.com.file.bean.Video;
 import seekbar.ggh.com.myapplication.R;
+import utils.VideoUtils;
 
 public class VideoAdapter extends BaseQuickAdapter<Video, BaseViewHolder> {
     public VideoAdapter(@Nullable List<Video> data) {
-        super(R.layout.item_song, data);
+        super(R.layout.item_video, data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, Video item) {
 
-            helper.setText(R.id.file_name_text,item.getName());
-        ImageView imageView = helper.itemView.findViewById (R.id.imageView);
-        Glide.with (mContext).load (R.drawable.ic_video).into (imageView);
-
+            helper.setText(R.id.tv_name,item.getName());
+        ImageView imageView = helper.itemView.findViewById (R.id.iv_video);
+//        Glide.with (mContext).load (VideoUtils.getVideoThumbnail(item.getId())).into (imageView);
+        //加载缩略图
+        Glide.with( mContext ).load( item.getPath() ).thumbnail(0.1f).into( imageView ) ;
     }
 }
