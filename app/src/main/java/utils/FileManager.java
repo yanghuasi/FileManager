@@ -912,7 +912,155 @@ public final class FileManager {
 		bitmap = MediaStore.Video.Thumbnails.getThumbnail(mContentResolver, id, MediaStore.Images.Thumbnails.MICRO_KIND, options);
 		return bitmap;
 	}
+	/**
+	 * 根据歌名查看音乐
+	 * @param context 上下文
+	 * @param key 关键字
+	 * @return
+	 */
+	public static String[] queryMusic(Context context, String key) {
+		ArrayList<String> nameList = new ArrayList<>();
+		Cursor c = null;
+		try {
+			c = context.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null,
+					MediaStore.Audio.Media.DISPLAY_NAME + " LIKE '%" + key + "%'",
+					null,
+					MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
 
+			while (c.moveToNext()) {
+				String path = c.getString(c.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA));// 路径
+
+				if (!FileManager.isExists(path)) {
+					continue;
+				}
+
+				String name = c.getString(c.getColumnIndexOrThrow(MediaStore.Audio.Media.DISPLAY_NAME)); // 歌曲名
+				nameList.add(name);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (c != null) {
+				c.close();
+			}
+		}
+		if (nameList.isEmpty()){
+			return new String[]{};
+		}
+		return (String[])nameList.toArray(new String[nameList.size()]);
+	}
+	/**
+	 * 根据照片名查看照片
+	 * @param context 上下文
+	 * @param key 关键字
+	 * @return
+	 */
+	public static String[] queryPhoto(Context context, String key) {
+		ArrayList<String> nameList = new ArrayList<>();
+		Cursor c = null;
+		try {
+			c = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null,
+					MediaStore.Images.Media.DISPLAY_NAME + " LIKE '%" + key + "%'",
+					null,
+					MediaStore.Images.Media.DEFAULT_SORT_ORDER);
+
+			while (c.moveToNext()) {
+				String path = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));// 路径
+
+				if (!FileManager.isExists(path)) {
+					continue;
+				}
+
+				String name = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME)); // 歌曲名
+				nameList.add(name);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (c != null) {
+				c.close();
+			}
+		}
+		if (nameList.isEmpty()){
+			return new String[]{};
+		}
+		return (String[])nameList.toArray(new String[nameList.size()]);
+	}
+	/**
+	 * 根据视频名查看视频
+	 * @param context 上下文
+	 * @param key 关键字
+	 * @return
+	 */
+	public static String[] quertVideo(Context context, String key) {
+		ArrayList<String> nameList = new ArrayList<>();
+		Cursor c = null;
+		try {
+			c = context.getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, null,
+					MediaStore.Video.Media.DISPLAY_NAME + " LIKE '%" + key + "%'",
+					null,
+					MediaStore.Video.Media.DEFAULT_SORT_ORDER);
+
+			while (c.moveToNext()) {
+				String path = c.getString(c.getColumnIndexOrThrow(MediaStore.Video.Media.DATA));// 路径
+
+				if (!FileManager.isExists(path)) {
+					continue;
+				}
+
+				String name = c.getString(c.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME)); // 歌曲名
+				nameList.add(name);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (c != null) {
+				c.close();
+			}
+		}
+		if (nameList.isEmpty()){
+			return new String[]{};
+		}
+		return (String[])nameList.toArray(new String[nameList.size()]);
+	}
+	/**
+	 * 根据文件名查看文件
+	 * @param context 上下文
+	 * @param key 关键字
+	 * @return
+	 */
+	public static String[] quertFile(Context context, String key) {
+		ArrayList<String> nameList = new ArrayList<>();
+		Cursor c = null;
+		try {
+			c = context.getContentResolver().query(MediaStore.Files.getContentUri("external"), new String[]{"_id", "_data", "_size"}, key, null, MediaStore.Files.FileColumns.MEDIA_TYPE);
+
+			while (c.moveToNext()) {
+				String path = c.getString(c.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA));// 路径
+
+				if (!FileManager.isExists(path)) {
+					continue;
+				}
+
+				String name = c.getString(c.getColumnIndexOrThrow(MediaStore.Files.FileColumns.SIZE)); // 歌曲名
+				nameList.add(name);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (c != null) {
+				c.close();
+			}
+		}
+		if (nameList.isEmpty()){
+			return new String[]{};
+		}
+		return (String[])nameList.toArray(new String[nameList.size()]);
+	}
 	/**
 	 * 通过文件类型得到相应文件的集合
 	 **/

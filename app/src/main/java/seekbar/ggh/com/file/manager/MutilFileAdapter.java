@@ -74,18 +74,18 @@ public class MutilFileAdapter extends BaseQuickAdapter<ImgFolderBean, BaseViewHo
             if (MediaUtils.isImageFileType(item.getDir())) {
                 helper.setText(R.id.tv_name, item.getName());
                 ImageView imageView = helper.itemView.findViewById(R.id.iv_file);
-//                Glide.with(mContext).load(R.drawable.ic_pic).into(imageView);
-                imageView.setImageResource(R.drawable.ic_pic);
+                Glide.with(mContext).load(item.getDir()).into(imageView);
+//                imageView.setImageResource(R.drawable.ic_pic);
             } else if (MediaUtils.isAudioFileType(item.getDir())) {
                 helper.setText(R.id.tv_name, item.getName());
                 ImageView imageView = helper.itemView.findViewById(R.id.iv_file);
-//                Glide.with(mContext).load(R.drawable.ic_music).into(imageView);
+//                Glide.with(mContext).load(item.getDir()).into(imageView);
                 imageView.setImageResource(R.drawable.ic_music);
             } else if (MediaUtils.isVideoFileType(item.getDir())) {
                 helper.setText(R.id.tv_name, item.getName());
                 ImageView imageView = helper.itemView.findViewById(R.id.iv_file);
-//                Glide.with(mContext).load(R.drawable.ic_video).into(imageView);
-                imageView.setImageResource(R.drawable.ic_video);
+               Glide.with( mContext ).load( item.getDir() ).thumbnail(0.1f).into( imageView ) ;
+//                imageView.setImageResource(R.drawable.ic_video);
             }
             else if (FileManager.getFileType(item.getDir())==FileManager.TYPE_APK){
                 helper.setText(R.id.tv_name, item.getName());

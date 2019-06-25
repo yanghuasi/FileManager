@@ -1,30 +1,21 @@
-package seekbar.ggh.com.file.manager;
+package seekbar.ggh.com.file.classify.search;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import seekbar.ggh.com.myapplication.R;
 import utils.FileManager;
-import utils.FileUtils;
 
-public class SearchFragemnt extends Fragment {
+public class AudioSearchFragment extends Fragment {
     private String[] mStrs = {"kk", "kk", "wskx", "wksx"};
     private SearchView mSearchView;
     private ListView listView;
@@ -32,9 +23,9 @@ public class SearchFragemnt extends Fragment {
 
 
 
-    public static SearchFragemnt newInstance(Context context) {
+    public static seekbar.ggh.com.file.manager.SearchFragemnt newInstance(Context context) {
 //        context.startActivity(new Intent().putExtra("path",filepath));
-        SearchFragemnt fg = new SearchFragemnt();
+        seekbar.ggh.com.file.manager.SearchFragemnt fg = new seekbar.ggh.com.file.manager.SearchFragemnt();
         return fg;
     }
 
@@ -61,7 +52,7 @@ public class SearchFragemnt extends Fragment {
             // 当点击搜索按钮时触发该方法
             @Override
             public boolean onQueryTextSubmit(String query) {
-                quertFile(query);
+                quertMusic(query);
                 return true;
             }
 
@@ -83,10 +74,10 @@ public class SearchFragemnt extends Fragment {
      * 模糊查找音乐
      * @param key
      */
-    private void quertFile(String key) {
+    private void quertMusic(String key) {
         String[] musics = new String[]{};
         if (!TextUtils.isEmpty(key)){
-            musics = FileManager.quertFile(getActivity(), key);
+            musics = FileManager.queryMusic(getActivity(), key);
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, musics);
         rv.setAdapter(adapter);
