@@ -51,4 +51,9 @@
         android:orderInCategory="100"
         android:title="按时间排序"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/order_size"
+        android:orderInCategory="100"
+        android:title="按大小排序"
+        app:showAsAction="never"/>
 </menu>

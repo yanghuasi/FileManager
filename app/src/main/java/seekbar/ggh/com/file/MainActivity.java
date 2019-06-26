@@ -3,6 +3,7 @@ package seekbar.ggh.com.file;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -80,8 +81,10 @@ public class MainActivity extends AppCompatActivity {
                         .commit();
             }
         };
+        final String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+        final String name =Environment.getExternalStorageDirectory().getName();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fg = new MutilFileFragment();
+        fg =  MutilFileFragment.newInstance(path,name);
         fragmentTransaction.add(R.id.container, fg, "outside").commit();
 //        btn=(Button)findViewById(R.id.btn);
 //        btn.setOnClickListener(new View.OnClickListener() {

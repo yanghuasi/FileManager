@@ -25,6 +25,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -791,7 +794,58 @@ public final class FileManager {
 		}
 		return fileNames;
 	}
-	
+	/**
+	 * 得到图片文件夹集合
+	 */
+	private static List<ImgFolderBean> getImageFolders(Context context) {
+		List<ImgFolderBean> folders = new ArrayList<ImgFolderBean>();
+		ContentResolver mContentResolver = context.getContentResolver();
+		// 扫描图片
+		Cursor c = null;
+		try {
+			c = mContentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null,
+					MediaStore.Images.Media.MIME_TYPE + "= ? or " + MediaStore.Images.Media.MIME_TYPE + "= ?",
+					new String[]{"image/jpeg", "image/png"}, MediaStore.Images.Media.DATE_MODIFIED);
+			List<String> mDirs = new ArrayList<String>();//用于保存已经添加过的文件夹目录
+			while (c.moveToNext()) {
+				String path = c.getString(c.getColumnIndex(MediaStore.Images.Media.DATA));// 路径
+				File parentFile = new File(path).getParentFile();
+				if (parentFile == null)
+					continue;
+
+				String dir = parentFile.getAbsolutePath();
+				if (mDirs.contains(dir))//如果已经添加过
+					continue;
+
+				mDirs.add(dir);//添加到保存目录的集合中
+				ImgFolderBean folderBean = new ImgFolderBean();
+				folderBean.setDir(dir);
+				folderBean.setFistImgPath(path);
+				if (parentFile.list() == null)
+					continue;
+				int count = parentFile.list(new FilenameFilter() {
+					@Override
+					public boolean accept(File dir, String filename) {
+						if (filename.endsWith(".jpeg") || filename.endsWith(".jpg") || filename.endsWith(".png")) {
+							return true;
+						}
+						return false;
+					}
+				}).length;
+
+				folderBean.setCount(count);
+				folders.add(folderBean);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (c != null) {
+				c.close();
+			}
+		}
+
+		return folders;
+	}
 	/**
 	 * 获得某一文件夹下的所有xml，XML文件名的集合
 	 * 
@@ -822,6 +876,122 @@ public final class FileManager {
 	public static boolean reNamePath(String oldName, String newName) {
 		File f = new File(oldName);
 		return f.renameTo(new File(newName));
+	}
+	/**
+	 * 按文件名排序
+	 * @param filePath
+	 */
+	public static ArrayList<String> orderByName(String filePath) {
+		ArrayList<String> FileNameList = new ArrayList<String>();
+		File file = new File(filePath);
+		File[] files = file.listFiles();
+		List fileList = Arrays.asList(files);
+		Collections.sort(fileList, new Comparator<File>() {
+			@Override
+			public int compare(File o1, File o2) {
+				if (o1.isDirectory() && o2.isFile())
+					return -1;
+				if (o1.isFile() && o2.isDirectory())
+					return 1;
+				return o1.getName().compareTo(o2.getName());
+			}
+		});
+		for (File file1 : files) {
+			if (file1.isDirectory()) {
+				FileNameList.add(file1.getName());
+			}
+		}
+		return FileNameList;
+	}
+	/**
+	 * 按文件修改时间排序
+	 * @param filePath
+	 */
+	public static ArrayList<String> orderByDate(String filePath) {
+		ArrayList<String> FileNameList = new ArrayList<String>();
+		File file = new File(filePath);
+		File[] files = file.listFiles();
+		Arrays.sort(files, new Comparator<File>() {
+			public int compare(File f1, File f2) {
+				long diff = f1.lastModified() - f2.lastModified();
+				if (diff > 0)
+					return 1;
+				else if (diff == 0)
+					return 0;
+				else
+					return -1;// 如果 if 中修改为 返回-1 同时此处修改为返回 1 排序就会是递减
+			}
+
+			public boolean equals(Object obj) {
+				return true;
+			}
+
+		});
+
+		for (File file1 : files) {
+			if (file1.isDirectory()) {
+				FileNameList.add(file1.getName());
+			}
+		}
+		return FileNameList;
+	}
+	/**
+	 * 按文件大小排序
+	 * @param filePath
+	 */
+	public static ArrayList<String> orderBySize(String filePath) {
+		ArrayList<String> FileNameList = new ArrayList<String>();
+		File file = new File(filePath);
+		File[] files = file.listFiles();
+		List<File> fileList = Arrays.asList(files);
+		Collections.sort(fileList, new Comparator<File>() {
+			public int compare(File f1, File f2) {
+				long s1 = getFolderSize(f1);
+				long s2 = getFolderSize(f2);
+
+				long diff = s1 - s2;
+				if (diff > 0)
+					return 1;
+				else if (diff == 0)
+					return 0;
+				else
+					return -1;// 如果 if 中修改为 返回-1 同时此处修改为返回 1 排序就会是递减
+			}
+
+			public boolean equals(Object obj) {
+				return true;
+			}
+		});
+
+		for (File file1 : files) {
+			if (file1.isDirectory()) {
+				FileNameList.add(file1.getName());
+			}
+		}
+		return FileNameList;
+	}
+
+	/**
+	 * 获取文件夹大小
+	 * @param file File实例
+	 * @return long
+	 */
+	public static long getFolderSize(File file) {
+
+		long size = 0;
+		try {
+			java.io.File[] fileList = file.listFiles();
+			for (int i = 0; i < fileList.length; i++) {
+				if (fileList[i].isDirectory()) {
+					size = size + getFolderSize(fileList[i]);
+				} else {
+					size = size + fileList[i].length();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return size;
 	}
 	/**
 	 * 获取本机音乐列表
@@ -1146,7 +1316,7 @@ public final class FileManager {
 	/**
 	 * 得到图片文件夹集合
 	 */
-	public List<ImgFolderBean> getImageFolders() {
+	public static List<ImgFolderBean> getImageFolders() {
 		List<ImgFolderBean> folders = new ArrayList<ImgFolderBean>();
 		// 扫描图片
 		Cursor c = null;
