@@ -15,10 +15,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import seekbar.ggh.com.file.R;
 import seekbar.ggh.com.file.classify.adapter.AudioAdapter;
 import seekbar.ggh.com.file.classify.adapter.RarAdapter;
 import seekbar.ggh.com.file.manager.ImgFolderBean;
-import seekbar.ggh.com.myapplication.R;
 import utils.FileUtils;
 
 public class RarFragment extends Fragment {

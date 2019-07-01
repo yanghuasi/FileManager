@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import java.util.List;
-import seekbar.ggh.com.myapplication.R;
-import utils.FileUtil;
+
+import seekbar.ggh.com.file.R;
 import utils.FileUtilss;
 
 public class BackgoundAdapter extends BaseQuickAdapter<String, BaseViewHolder> {

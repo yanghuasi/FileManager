@@ -23,7 +23,7 @@ public class PhotoUtils {
      * 获取sd卡所有的图片文件
      *
      * @return
-     * @throws Exception
+     * @throws
      */
     public static List<String> getSystemPhotoList(Context context)
     {
@@ -57,7 +57,7 @@ public class PhotoUtils {
         Cursor c = null;
         try {
             ContentResolver mContentResolver = context.getContentResolver();
-            c = mContentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null,
+             c = mContentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null,
                     MediaStore.Images.Media.MIME_TYPE + "= ? or " + MediaStore.Images.Media.MIME_TYPE + "= ?",
                     new String[]{"image/jpeg", "image/png"}, MediaStore.Images.Media.DATE_MODIFIED);
             List<String> mDirs = new ArrayList<String>();//用于保存已经添加过的文件夹目录

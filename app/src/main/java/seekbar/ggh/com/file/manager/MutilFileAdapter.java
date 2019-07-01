@@ -1,6 +1,7 @@
 package seekbar.ggh.com.file.manager;
 
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 
@@ -11,9 +12,10 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import java.io.File;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-import seekbar.ggh.com.myapplication.R;
+import seekbar.ggh.com.file.R;
 import utils.FileManager;
 import utils.MediaUtils;
 import utils.PhotoUtils;
@@ -23,15 +25,20 @@ public class MutilFileAdapter extends BaseQuickAdapter<ImgFolderBean, BaseViewHo
     private Set<Integer> checkStatus;//保证元素不重复
     //控制是否显示Checkbox。true 显示 false 隐藏
     private boolean showCheckBox = false;
-
+    private boolean showLike = false;
     private boolean allCheckBox = false;
+
 
     //显示checkbox
     public boolean setShowCheckBox(boolean showCheckBox) {
         this.showCheckBox = showCheckBox;
         return showCheckBox;
     }
-
+    //显示checkbox
+    public boolean setShowLike(boolean showLike) {
+        this.showLike = showLike;
+        return showLike;
+    }
     //设置选中状态
     public void setCheckStatus(int pos) {
         checkStatus.add(pos);
@@ -122,8 +129,14 @@ public class MutilFileAdapter extends BaseQuickAdapter<ImgFolderBean, BaseViewHo
             imageView.setImageResource(R.drawable.ic_unknow);
         }
         helper.setVisible(R.id.cb, showCheckBox);//初次进入，隐藏checkbox
-
+        helper.setVisible(R.id.like, showLike);
         CheckBox checkBox = helper.itemView.findViewById(R.id.cb);
+        ImageView like=helper.itemView.findViewById(R.id.like);
+        if (showLike){
+            like.setVisibility(View.VISIBLE);
+        }else {
+            like.setVisibility(View.INVISIBLE);
+        }
         //当前进入选中状态，且当前item是被选中
         //getLayoutPosition获取当前item的position
         //boolean contains(Object o);判断集合中是否存在某个元素

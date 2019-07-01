@@ -2,22 +2,11 @@ package seekbar.ggh.com.file.classify.adapter;
 
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.File;
 import java.util.List;
-
-import seekbar.ggh.com.file.bean.FileBean;
-import seekbar.ggh.com.file.bean.Song;
+import seekbar.ggh.com.file.R;
 import seekbar.ggh.com.file.manager.ImgFolderBean;
-import seekbar.ggh.com.myapplication.R;
 import utils.FileManager;
 
 public class DocAdapter extends BaseQuickAdapter<ImgFolderBean, BaseViewHolder> {

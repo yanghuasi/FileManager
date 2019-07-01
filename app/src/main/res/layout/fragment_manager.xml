@@ -33,7 +33,16 @@
             android:text="图片长按多选"
             android:textColor="#fff"
             android:textStyle="bold" />
-
+        <TextView
+            android:id="@+id/system_intent"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="60dp"
+            android:gravity="center"
+            android:text="系统"
+            android:textColor="#fff" />
         <TextView
             android:id="@+id/classify"
             android:layout_width="wrap_content"
@@ -51,7 +60,7 @@
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="80dp"
+            android:layout_marginRight="100dp"
             android:gravity="center"
             android:src="@drawable/ic_add" />
 
@@ -67,16 +76,17 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_search"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="12dp"/>
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/ic_search" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp_40"
             android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/dp_40"
             android:gravity="center"
-            android:hint="搜索文件"/>
+            android:hint="搜索文件" />
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -85,77 +95,95 @@
         android:layout_height="match_parent"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="60dp"></android.support.v7.widget.RecyclerView>
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:progress="0"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:max="100"
+        style="?android:attr/progressBarStyleHorizontal"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:id="@+id/newFolder"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:background="#6CC4B8"
             android:layout_weight="1"
+            android:background="#6CC4B8"
             android:visibility="invisible">
+
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_add"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_add" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="新建文件夹"
                 android:layout_alignParentBottom="true"
-                android:textColor="@color/white"
-                android:layout_centerHorizontal="true"/>
+                android:layout_centerHorizontal="true"
+                android:text="新建文件夹"
+                android:textColor="@color/white" />
         </RelativeLayout>
+
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1">
-        <RelativeLayout
-            android:id="@+id/paste"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#6CC4B8"
-            android:layout_weight="1"
-            android:visibility="invisible">
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_doc"
-                android:layout_centerInParent="true"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="粘贴"
-                android:layout_alignParentBottom="true"
-                android:textColor="@color/white"
-                android:layout_centerHorizontal="true"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/move"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#6CC4B8"
-            android:layout_weight="1"
-            android:visibility="invisible">
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_doc"
-                android:layout_centerInParent="true"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="移动"
-                android:layout_alignParentBottom="true"
-                android:textColor="@color/white"
-                android:layout_centerHorizontal="true"/>
-        </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/paste"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:background="#6CC4B8"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_doc" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="粘贴"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/move"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:background="#6CC4B8"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_doc" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="移动"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
         </FrameLayout>
     </LinearLayout>
 </RelativeLayout>

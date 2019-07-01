@@ -30,25 +30,30 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import seekbar.ggh.com.file.dialogfragment.BackgoundAdapter;
-import seekbar.ggh.com.file.dialogfragment.MultiBackgoundFragment;
-import seekbar.ggh.com.myapplication.R;
+import seekbar.ggh.com.file.R;
 import utils.ScreenUtil;
 
 public class ShareDialogFragment extends DialogFragment {
 
-    private ShareAdapter mAdapter;
     private List<String> mPicturePaths;
     public RecyclerView recyclerView;
+    private String webside;
 
 
 
-    public static MultiBackgoundFragment newInstance(Context context) {
-//        context.startActivity(new Intent().putExtra("path",filepath));
-        MultiBackgoundFragment fg = new MultiBackgoundFragment();
+    public static ShareDialogFragment newInstance(String webside) {
+        Bundle bundle = new Bundle();
+        ShareDialogFragment fg= new ShareDialogFragment();
+        bundle.putString("webside", webside);
+//        Bitmap bm = BitmapFactory.decodeFile(imgpath);
+        fg.setArguments(bundle);
         return fg;
     }
-
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        webside = getArguments().getString("webside");
+    }
     @Override
     public void onStart() {
         super.onStart();
@@ -77,20 +82,11 @@ public class ShareDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         final View view = inflater.inflate(R.layout.fragment_dialog_share, null);
-        recyclerView=view.findViewById(R.id.rv);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 5));
-        mAdapter = new ShareAdapter(mPicturePaths);
+//        recyclerView=view.findViewById(R.id.rv);
+//        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 5));
 
-        //报错：Caused by: android.view.ViewRootImpl$CalledFromWrongThreadException: Only the original thread that created a view hierarchy can touch its views.
-        recyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter a, View view, int position) {
-                //EventBus.getDefault().post(new PhtoEvent(FileUtil.getAssetPicPath(getActivity()).get(position)));
-//                EventBus.getDefault().post(new PhtoEvent(mAdapter.getData().get(position)));
 
-            }
-        });
+
 
         return view;
     }

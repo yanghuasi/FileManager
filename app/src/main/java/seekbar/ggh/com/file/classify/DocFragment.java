@@ -24,12 +24,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import seekbar.ggh.com.file.R;
 import seekbar.ggh.com.file.bean.FileBean;
 import seekbar.ggh.com.file.classify.adapter.DocAdapter;
 import seekbar.ggh.com.file.manager.ImgFolderBean;
 import seekbar.ggh.com.file.manager.SearchFragemnt;
-import seekbar.ggh.com.myapplication.R;
-import utils.FileManager;
 import utils.FileUtils;
 
 public class DocFragment extends Fragment {

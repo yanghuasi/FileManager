@@ -3,7 +3,9 @@ package seekbar.ggh.com.file.manager.add;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -19,8 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import seekbar.ggh.com.file.classify.search.PhotoSearchFragment;
-import seekbar.ggh.com.myapplication.R;
+import seekbar.ggh.com.file.R;
 import utils.FileManager;
 import utils.ScreenUtils;
 
@@ -96,6 +97,13 @@ public class AddDialogFragment extends Fragment {
             }
         });
         return view;
+    }
+    //激活相册操作
+    private void goPhotoAlbum() {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, 2);
     }
 
     private void showInputDialog() {

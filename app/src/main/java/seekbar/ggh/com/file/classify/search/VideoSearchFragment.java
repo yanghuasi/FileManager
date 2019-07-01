@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 
-import seekbar.ggh.com.myapplication.R;
+import seekbar.ggh.com.file.R;
 import utils.FileManager;
 
 public class VideoSearchFragment extends Fragment {

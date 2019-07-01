@@ -13,7 +13,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
-import seekbar.ggh.com.myapplication.R;
+import seekbar.ggh.com.file.R;
+
 import utils.ScreenUtil;
 
 public class BackgroundSelectorDialog extends DialogFragment implements MultiBackgoundFragment.OnItemClickListener{

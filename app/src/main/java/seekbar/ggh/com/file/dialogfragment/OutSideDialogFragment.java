@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import seekbar.ggh.com.file.MainActivity;
+import seekbar.ggh.com.file.R;
 import seekbar.ggh.com.file.manager.MutilFileFragment;
-import seekbar.ggh.com.myapplication.R;
 
 
 public class OutSideDialogFragment extends Fragment {

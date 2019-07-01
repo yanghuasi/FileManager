@@ -3,6 +3,8 @@ package seekbar.ggh.com.file.manager;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
@@ -31,16 +33,24 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 
+import org.apache.tools.ant.types.resources.selectors.None;
+
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import seekbar.ggh.com.file.R;
 import seekbar.ggh.com.file.classify.ClassifyFragment;
 import seekbar.ggh.com.file.manager.add.AddDialogFragment;
+import seekbar.ggh.com.file.system.SystemIntentFragment;
 import utils.FileUtils;
-import seekbar.ggh.com.myapplication.R;
 import utils.FileManager;
+import utils.GetFilesUtils;
 
 public class MutilFileFragment extends Fragment {
     private RecyclerView mRcv;
@@ -53,6 +63,7 @@ public class MutilFileFragment extends Fragment {
     private List<String> list;
     private TextView title;
     int i;
+    private TextView system;
     private boolean select = true;
     private RelativeLayout newFolder;
     private RelativeLayout paste;
@@ -64,7 +75,8 @@ public class MutilFileFragment extends Fragment {
     private String renameOldPath;
     private String renameNewPath;
 
-
+    private List<Map<String, Object>> aList;
+    private String baseFile;
     /**
      * 记录选中的ｃｈｅｃｋｂｏｘ
      */
@@ -77,6 +89,7 @@ public class MutilFileFragment extends Fragment {
     private String name;
     private String path2;
     private String name2;
+    MyTask mTask;
 
     public static MutilFileFragment newInstance(String path, String name) {
         Bundle bundle = new Bundle();
@@ -112,27 +125,29 @@ public class MutilFileFragment extends Fragment {
         newFolder = view.findViewById(R.id.newFolder);
         paste = view.findViewById(R.id.paste);
         move = view.findViewById(R.id.move);
+        system= view.findViewById(R.id.system_intent);
         checkList = new ArrayList<>();
         checkListPath = new CopyOnWriteArrayList<>();
-        entities = new ArrayList<>();
-        MutilFileEntity newEntity = new MutilFileEntity("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542721963681&di=e7247350673c1e4dca62862ee9c3368b&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F0%2F53b4b747b9094.jpg");
-        MutilFileEntity newEntity1 = new MutilFileEntity("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542721963681&di=47f5c7a5dfcec7a144dabf36f04b3a8d&imgtype=0&src=http%3A%2F%2Fwww.znsfagri.com%2Fuploadfile%2Feditor%2Fimage%2F20170626%2F20170626151136_11631.jpg");
-        MutilFileEntity newEntity2 = new MutilFileEntity("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542721963680&di=e574b93a7e706f5bb8463b2adac00959&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201501%2F02%2F20150102204647_dj2t8.jpeg");
-        MutilFileEntity newEntity3 = new MutilFileEntity("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542721963679&di=94b173763aa94c330fe8168f8fd63d78&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201505%2F06%2F20150506112813_skniy.jpeg");
-        MutilFileEntity newEntity4 = new MutilFileEntity("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542721963679&di=3ebaa5dac1253587243605900ee1c114&imgtype=0&src=http%3A%2F%2Fimg0.ph.126.net%2FoM3Ux_qm9BNW6fp1HxJ8_Q%3D%3D%2F1687723960457254251.jpg");
-        MutilFileEntity newEntity5 = new MutilFileEntity("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542721963678&di=c0b6cf83e73f0d587671ac2cfe74d9fd&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201409%2F15%2F20140915215605_WZwQW.jpeg");
-
-        entities.add(newEntity);
-        entities.add(newEntity1);
-        entities.add(newEntity2);
-        entities.add(newEntity3);
-        entities.add(newEntity4);
-        entities.add(newEntity5);
-        final String path = Environment.getExternalStorageDirectory().getAbsolutePath();
         mMutilFileAdapter = new MutilFileAdapter(getFiles(path));
-
         mRcv.setAdapter(mMutilFileAdapter);
-        mRcv.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        mRcv.setLayoutManager(new GridLayoutManager(getActivity(), 4));
+
+        mRcv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        system.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft2 = getFragmentManager().beginTransaction();
+                ft2.replace(R.id.container, new SystemIntentFragment());
+                ft2.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft2.addToBackStack(null);
+                ft2.commit();
+            }
+        });
         classify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,17 +184,7 @@ public class MutilFileFragment extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                String extractDirPath=FileManager.extractDirPath(path);
-//                if (path == Environment.getExternalStorageDirectory().getAbsolutePath()){
                 getActivity().getSupportFragmentManager().popBackStack();//suport.v4包
-//                }else {
-//                    mMutilFileAdapter.notifyDataSetChanged();
-////                    String extractDirPath=FileManager.extractDirPath(path);
-////                    mMutilFileAdapter.setNewData(getFiles(extractDirPath));
-//                }
-//                if (listener!=null){
-//                    listener.onBackClick();
-//                }
             }
         });
 
@@ -202,6 +207,8 @@ public class MutilFileFragment extends Fragment {
                 //全选键被勾选时
                 if (all.isChecked()) {
                     mMutilFileAdapter.setAllCheckBox(true);//全选状态
+                    checkList.clear();
+                    checkListPath.clear();
                     //遍历所有item 获取其position——i
                     for (i = 0; i < mMutilFileAdapter.getItemCount(); i++) {
                         checkList.add(String.valueOf(i));//添加勾选的item——全部
@@ -209,17 +216,21 @@ public class MutilFileFragment extends Fragment {
 //                        checkListPath.add();
                         //position就刷新第几个的checkbox的选中状态
                         mMutilFileAdapter.setCheckStatus(i);//勾选item——全部
+                        title.setText("（共" + FileManager.getFileCount(path) + ")" + "已选中" + checkList.size() + "个文件");
                     }
 
                     mMutilFileAdapter.notifyDataSetChanged();//刷新
                     //全选键被取消时
                 } else if (all.isChecked() == false) {
                     mMutilFileAdapter.setAllCheckBox(false);//非全选状态
+                    checkList.clear();
+                    checkListPath.clear();
                     for (i = 0; i < mMutilFileAdapter.getItemCount(); i++) {
                         checkList.remove(String.valueOf(i));//移除取消勾选的item——全部
 //                        checkListPath.remove(path);
                         //觉得难看不想选择则移除，取消选中框选中状态
                         mMutilFileAdapter.removeCheckBoxStuaus(i);//取消勾选item——全部
+                        title.setText("（共" + FileManager.getFileCount(path) + ")" + "已选中" + checkList.size() + "个文件");
                     }
 
                     mMutilFileAdapter.notifyDataSetChanged();
@@ -231,18 +242,6 @@ public class MutilFileFragment extends Fragment {
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Log.d("ADAPTER", "0");
                 Toast.makeText(getActivity(), "点击了第" + (position + 1) + "条条目", Toast.LENGTH_SHORT).show();
-                /*if (checkList.contains(String.valueOf(position))) {
-                    checkList.remove(String.valueOf(position));
-                    //觉得难看不想选择则移除，取消选中框选中状态
-                    mPhotoSeletorAdapter.removeCheckBoxStuaus(position);
-                } else {
-                    checkList.add(String.valueOf(position));
-                    //position就刷新第几个的checkbox的选中状态
-                    mPhotoSeletorAdapter.setCheckStatus(position);
-                }
-
-                //只刷新点击的那一条记录
-                mPhotoSeletorAdapter.notifyItemChanged(position);*/
                 ImgFolderBean current = mMutilFileAdapter.getItem(position);
                 path2 = current.getDir();
                 name2 = current.getName();
@@ -252,6 +251,12 @@ public class MutilFileFragment extends Fragment {
                     mMutilFileAdapter.setNewData(getFiles(path2));
                     imgFolderBean.setName(name2);
                     imgFolderBean.setDir(path2);
+                    if (checkIsImageFile(name2)) {
+                        Intent i2 = new Intent(Intent.ACTION_GET_CONTENT);
+                        File file = new File("系统根目录");
+                        i2.setAction(Intent.ACTION_PICK);
+
+                    }
                     //如果显示勾选框时，已经有选中的勾选框，再次点击时取消勾选
                 }
                 if (select = !select && mMutilFileAdapter.setShowCheckBox(true) && checkList.contains(String.valueOf(position))) {
@@ -339,6 +344,12 @@ public class MutilFileFragment extends Fragment {
                 title.setText("（共" + FileManager.getFileCount(path) + ")" + "已选中" + checkList.size() + "个文件");
             }
         });
+        /**
+         * 步骤2：创建AsyncTask子类的实例对象（即 任务实例）
+         * 注：AsyncTask子类的实例必须在UI线程中创建
+         */
+        mTask = new MyTask();
+
         return view;
 
 
@@ -356,23 +367,30 @@ public class MutilFileFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.order_name:
                 FileManager.orderByName(path);
+                mMutilFileAdapter.setNewData(getFiles(path));
                 break;
             case R.id.order_time:
                 FileManager.orderByDate(path);
+                mMutilFileAdapter.setNewData(getFiles(path));
                 break;
             case R.id.order_size:
                 FileManager.orderBySize(path);
+                mMutilFileAdapter.setNewData(getFiles(path));
                 break;
             case R.id.download:
                 break;
             case R.id.imformation:
-                showListDialog(path2,name2);
+                showListDialog(path2, name2);
                 break;
             case R.id.delete:
-
-                for (String deletePath : checkListPath) {
+                for (final String deletePath : checkListPath) {
                     if (deletePath != null) {
-                        FileManager.deleteFolder(deletePath);
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                FileManager.deleteFolder(deletePath);
+                            }
+                        }).start();
                         Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_SHORT).show();
                         //刷新
                         mMutilFileAdapter.setNewData(getFiles(FileManager.extractDirPath(deletePath)));
@@ -380,13 +398,12 @@ public class MutilFileFragment extends Fragment {
                         checkList.clear();
                         checkListPath.clear();
                         title.setText("（共" + FileManager.getFileCount(path) + ")" + "已选中" + checkList.size() + "个文件");
-//                        notifyAll();
-//                        String afterDeletePath = Environment.getExternalStorageDirectory().getAbsolutePath();
-//                        mMutilFileAdapter.setNewData(getFiles(afterDeletePath));
-                    }else {
+                    } else {
                         Toast.makeText(getActivity(), "请选择至少一个文件", Toast.LENGTH_SHORT).show();
                     }
                 }
+
+
                 break;
             case R.id.copy:
                 newFolder.setVisibility(View.VISIBLE);
@@ -396,7 +413,7 @@ public class MutilFileFragment extends Fragment {
                         copySourcePath = copyPath;
                         copyTargetPath = FileManager.extractDirPath(path2) + "/复件" + FileManager.extractFileName(copyPath);
                         Toast.makeText(getActivity(), "复制成功", Toast.LENGTH_SHORT).show();
-                    }else {
+                    } else {
                         Toast.makeText(getActivity(), "请选择至少一个文件", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -409,18 +426,21 @@ public class MutilFileFragment extends Fragment {
                     if (movePath != null) {
                         moveSourcePath = movePath;
                         moveTargetPath = FileManager.extractDirPath(path2) + "/移件" + FileManager.extractFileName(movePath);
-
-                    }else {
+                    } else {
                         Toast.makeText(getActivity(), "请选择至少一个文件", Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
             case R.id.like:
                 Toast.makeText(getActivity(), "点击了收藏", Toast.LENGTH_SHORT).show();
-                for (String path : checkListPath) {
-                    if (path != null) {
-//                        FileManager.copyFile(path,);
-                    }else {
+                for (String likePath : checkListPath) {
+                    if (likePath != null) {
+                        mMutilFileAdapter.setShowLike(true);
+                        mMutilFileAdapter.setShowCheckBox(false);
+                        checkList.clear();
+                        checkListPath.clear();
+                        title.setText("（共" + FileManager.getFileCount(path) + ")" + "已选中" + checkList.size() + "个文件");
+                    } else {
                         Toast.makeText(getActivity(), "请选择至少一个文件", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -429,9 +449,9 @@ public class MutilFileFragment extends Fragment {
                 Toast.makeText(getActivity(), "点击了重命名", Toast.LENGTH_SHORT).show();
                 for (String renamePath : checkListPath) {
                     if (renamePath != null) {
-                        renameOldPath=renamePath;
+                        renameOldPath = renamePath;
                         showRenameDialog();
-                    }else {
+                    } else {
                         Toast.makeText(getActivity(), "请选择至少一个文件", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -439,7 +459,8 @@ public class MutilFileFragment extends Fragment {
                 break;
             case R.id.share:
                 Toast.makeText(getActivity(), "点击了分享", Toast.LENGTH_SHORT).show();
-
+                ShareDialogFragment dialogFragment = ShareDialogFragment.newInstance("https://www.yuque.com/dashboard/docs");
+                dialogFragment.show(getFragmentManager(), "share");
                 break;
 
             default:
@@ -448,8 +469,9 @@ public class MutilFileFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
-    private void showListDialog(String path2,String name2) {
-        final String[] items = { "文件名称:"+name2,"路径:"+path2,"大小:"+FileManager.getFileSize(path2),"创建时间:"+FileManager.fileModifyTime(path2) };
+
+    private void showListDialog(String path2, String name2) {
+        final String[] items = {"文件名称:" + name2, "路径:" + path2, "大小:" + FileManager.getFileSize(path2), "创建时间:" + FileManager.fileModifyTime(path2)};
         AlertDialog.Builder listDialog =
                 new AlertDialog.Builder(getActivity());
         listDialog.setTitle("详情");
@@ -603,5 +625,41 @@ public class MutilFileFragment extends Fragment {
         return isImageFile;
     }
 
+    /**
+     * 步骤1：创建AsyncTask子类
+     * 注：
+     * a. 继承AsyncTask类
+     * b. 为3个泛型参数指定类型；若不使用，可用java.lang.Void类型代替
+     * 此处指定为：输入参数 = String类型、执行进度 = Integer类型、执行结果 = String类型
+     * c. 根据需求，在AsyncTask子类内实现核心方法
+     */
+    private class MyTask extends AsyncTask<None, None, None> {
+
+        // 方法1：onPreExecute（）
+        // 作用：执行 线程任务前的操作
+        @Override
+        protected void onPreExecute() {
+
+            // 执行前显示提示
+        }
+
+
+        // 方法2：doInBackground（）
+        // 作用：接收输入参数、执行任务中的耗时操作、返回 线程任务执行的结果
+        // 此处通过计算从而模拟“加载进度”的情况
+        @Override
+        protected None doInBackground(None... nones) {
+
+
+            return null;
+        }
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mTask.cancel(true);
+    }
 
 }

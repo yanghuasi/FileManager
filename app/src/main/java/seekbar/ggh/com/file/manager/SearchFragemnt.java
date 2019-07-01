@@ -20,7 +20,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import seekbar.ggh.com.myapplication.R;
+import seekbar.ggh.com.file.R;
 import utils.FileManager;
 import utils.FileUtils;
 

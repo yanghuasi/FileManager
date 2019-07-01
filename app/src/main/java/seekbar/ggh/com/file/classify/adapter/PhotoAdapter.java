@@ -7,9 +7,11 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+
 import java.util.List;
 
-import seekbar.ggh.com.myapplication.R;
+import seekbar.ggh.com.file.R;
+
 
 
 public class PhotoAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
@@ -19,11 +21,9 @@ public class PhotoAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, String path) {
-        Log.d("0",path);
-        String i =path;
-//            helper.setText(R.id.tv_name,item.getName());
-            ImageView imageView = helper.itemView.findViewById (R.id.photo);
-            Glide.with (mContext).load (path).into (imageView);
+        ImageView imageView = helper.itemView.findViewById(R.id.photo);
+        Glide.with(mContext).load(path).into(imageView);
+
 
     }
 }

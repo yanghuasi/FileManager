@@ -1,7 +1,9 @@
 package utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.provider.MediaStore;
 
 import java.util.ArrayList;
@@ -92,6 +94,17 @@ public class AudioUtils {
 
         }
         return songs;
+    }
+    /**
+     * 播放指定名称的歌曲
+     * @param audioPath 指定默认播放的音乐
+     */
+    public static void playAudio(String audioPath){
+        Intent mIntent = new Intent();
+        mIntent.setAction(android.content.Intent.ACTION_VIEW);
+        Uri uri = Uri.parse("file:///sdcard/a.mp3");//替换成audiopath
+        mIntent.setDataAndType(uri , "audio/mp3");
+        IntentUtils.startIntent(mIntent);
     }
 
 }

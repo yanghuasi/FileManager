@@ -10,8 +10,9 @@ import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 
+import seekbar.ggh.com.file.R;
 import seekbar.ggh.com.file.manager.ImgFolderBean;
-import seekbar.ggh.com.myapplication.R;
+
 
 
 public class PhotoAdapter extends BaseQuickAdapter<ImgFolderBean, BaseViewHolder> {

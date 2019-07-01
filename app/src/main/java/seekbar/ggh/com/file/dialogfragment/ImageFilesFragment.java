@@ -27,9 +27,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import seekbar.ggh.com.file.R;
 import seekbar.ggh.com.file.manager.ImgFolderBean;
 import utils.FileUtils;
-import seekbar.ggh.com.myapplication.R;
 import utils.ScreenUtil;
 
 public class ImageFilesFragment extends DialogFragment {

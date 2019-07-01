@@ -9,9 +9,10 @@ import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 
+import seekbar.ggh.com.file.R;
 import seekbar.ggh.com.file.bean.Video;
 import seekbar.ggh.com.file.manager.ImgFolderBean;
-import seekbar.ggh.com.myapplication.R;
+
 import utils.FileManager;
 
 public class RarAdapter extends BaseQuickAdapter<ImgFolderBean, BaseViewHolder> {

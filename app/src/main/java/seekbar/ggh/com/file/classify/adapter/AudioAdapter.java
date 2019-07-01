@@ -2,18 +2,13 @@ package seekbar.ggh.com.file.classify.adapter;
 
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-
 import java.io.File;
 import java.util.List;
-
-import seekbar.ggh.com.file.bean.Music;
-import seekbar.ggh.com.myapplication.R;
+import seekbar.ggh.com.file.R;
 import seekbar.ggh.com.file.bean.Song;
-import utils.FileManager;
+
 
 public class AudioAdapter extends BaseQuickAdapter<Song, BaseViewHolder> {
     public AudioAdapter(@Nullable List<Song> data) {

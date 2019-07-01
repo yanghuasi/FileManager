@@ -1,6 +1,9 @@
 package seekbar.ggh.com.file.classify;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,13 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+
+import seekbar.ggh.com.file.R;
+import seekbar.ggh.com.file.bean.Song;
+import seekbar.ggh.com.file.bean.Video;
 import seekbar.ggh.com.file.classify.adapter.AudioAdapter;
 import seekbar.ggh.com.file.classify.adapter.VideoAdapter;
 import seekbar.ggh.com.file.classify.search.VideoSearchFragment;
-import seekbar.ggh.com.file.manager.SearchFragemnt;
-import seekbar.ggh.com.myapplication.R;
-import utils.AudioUtils;
-import utils.FileManager;
 import utils.VideoUtils;
 
 public class VideoFragemnt extends Fragment {
@@ -30,9 +34,20 @@ public class VideoFragemnt extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_manager, null);
         rv=view.findViewById(R.id.rv);
         search = view.findViewById(R.id.search);
-        rv.setLayoutManager(new GridLayoutManager(getActivity(),3));
+        rv.setLayoutManager(new GridLayoutManager(getActivity(),4));
         adapter = new VideoAdapter(VideoUtils.getAllVideo(getActivity()));
         rv.setAdapter(adapter);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Video current = (Video) adapter.getItem(position);
+                Uri uri = Uri.parse(current.getPath());
+                intent.setDataAndType(uri, "video/mp4");
+//                intent.setDataAndType(Uri.parse(Environment.getExternalStorageDirectory() + "/3.mp4"), "video/mp4");
+                startActivity(intent);
+            }
+        });
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

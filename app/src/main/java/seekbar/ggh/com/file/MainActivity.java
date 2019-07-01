@@ -15,7 +15,7 @@ import com.wkp.runtimepermissions.callback.PermissionCallBack;
 import com.wkp.runtimepermissions.util.RuntimePermissionUtil;
 
 import seekbar.ggh.com.file.manager.MutilFileFragment;
-import seekbar.ggh.com.myapplication.R;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -114,6 +114,20 @@ public class MainActivity extends AppCompatActivity {
     public void applyPermission() {
         //权限检查，回调是权限申请结果
         RuntimePermissionUtil.checkPermissions(this, RuntimePermissionUtil.STORAGE, new PermissionCallBack() {
+            @Override
+            public void onCheckPermissionResult(boolean hasPermission) {
+                if (hasPermission) {
+                    //直接做具有权限后的操作
+                    Toast.makeText(MainActivity.this, "权限申请成功", Toast.LENGTH_SHORT).show();
+
+                }else {
+                    //显示权限不具备的界面
+                    Toast.makeText(MainActivity.this, "权限申请失败", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+        RuntimePermissionUtil.checkPermissions(this, RuntimePermissionUtil.CAMERA, new PermissionCallBack() {
             @Override
             public void onCheckPermissionResult(boolean hasPermission) {
                 if (hasPermission) {

@@ -12,7 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 
-import seekbar.ggh.com.myapplication.R;
+import seekbar.ggh.com.file.R;
+
 import utils.FileManager;
 
 public class AudioSearchFragment extends Fragment {
@@ -23,9 +24,9 @@ public class AudioSearchFragment extends Fragment {
 
 
 
-    public static seekbar.ggh.com.file.manager.SearchFragemnt newInstance(Context context) {
+    public static AudioSearchFragment newInstance(Context context) {
 //        context.startActivity(new Intent().putExtra("path",filepath));
-        seekbar.ggh.com.file.manager.SearchFragemnt fg = new seekbar.ggh.com.file.manager.SearchFragemnt();
+        AudioSearchFragment fg = new AudioSearchFragment();
         return fg;
     }
 

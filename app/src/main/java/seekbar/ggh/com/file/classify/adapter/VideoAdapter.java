@@ -10,9 +10,10 @@ import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 
+import seekbar.ggh.com.file.R;
 import seekbar.ggh.com.file.bean.MMM;
 import seekbar.ggh.com.file.bean.Video;
-import seekbar.ggh.com.myapplication.R;
+
 import utils.VideoUtils;
 
 public class VideoAdapter extends BaseQuickAdapter<Video, BaseViewHolder> {

@@ -11,10 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import seekbar.ggh.com.file.R;
 import seekbar.ggh.com.file.classify.adapter.PhotoAdapter;
 import seekbar.ggh.com.file.classify.search.PhotoSearchFragment;
 import seekbar.ggh.com.file.manager.SearchFragemnt;
-import seekbar.ggh.com.myapplication.R;
+
 import utils.PhotoUtils;
 
 public class PhotoFragment extends Fragment {

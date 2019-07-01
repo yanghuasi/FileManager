@@ -11,7 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import seekbar.ggh.com.myapplication.R;
+import seekbar.ggh.com.file.R;
+
 
 public class ClassifyFragment extends Fragment {
     private RelativeLayout photo;

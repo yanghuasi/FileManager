@@ -15,7 +15,7 @@ import java.util.TimeZone;
 import seekbar.ggh.com.file.bean.MMM;
 import seekbar.ggh.com.file.bean.Material;
 import seekbar.ggh.com.file.bean.Video;
-import seekbar.ggh.com.myapplication.R;
+
 
 public class VideoUtils {
 

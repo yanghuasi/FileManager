@@ -5,6 +5,9 @@ public class ImgFolderBean {
     private String dir;
     /**第一张图片的路径，用于做文件夹的封面图片*/
     private String fistImgPath;
+    private String secondImgPath;
+    private String thirthImgPath;
+    private String fourthImgPath;
     /**文件夹名*/
     private String name;
     /**文件夹中图片的数量*/
@@ -13,7 +16,29 @@ public class ImgFolderBean {
     private boolean isFile;
 
 
+    public String getSecondImgPath() {
+        return secondImgPath;
+    }
 
+    public void setSecondImgPath(String secondImgPath) {
+        this.secondImgPath = secondImgPath;
+    }
+
+    public String getThirthImgPath() {
+        return thirthImgPath;
+    }
+
+    public void setThirthImgPath(String thirthImgPath) {
+        this.thirthImgPath = thirthImgPath;
+    }
+
+    public String getFourthImgPath() {
+        return fourthImgPath;
+    }
+
+    public void setFourthImgPath(String fourthImgPath) {
+        this.fourthImgPath = fourthImgPath;
+    }
 
     public boolean isFile() {
         return isFile;

@@ -18,9 +18,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import seekbar.ggh.com.file.R;
 import seekbar.ggh.com.file.classify.adapter.ApkAdapter;
 import seekbar.ggh.com.file.manager.ImgFolderBean;
-import seekbar.ggh.com.myapplication.R;
 import utils.FileManager;
 import utils.FileUtils;
 
@@ -33,7 +33,7 @@ public class ApkFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_manager, null);
         rv=view.findViewById(R.id.rv);
 
-        rv.setLayoutManager(new GridLayoutManager(getActivity(),3));
+        rv.setLayoutManager(new GridLayoutManager(getActivity(),4));
 //        String path = Environment.getExternalStorageDirectory().getAbsolutePath();
         adapter = new ApkAdapter(FileManager. getAppInfos(getActivity()));
         rv.setAdapter(adapter);
