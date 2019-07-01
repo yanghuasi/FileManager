@@ -1,5 +1,8 @@
 package seekbar.ggh.com.file.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  *
  * @ClassName: com.example.mediastore.Song
@@ -8,7 +11,7 @@ package seekbar.ggh.com.file.bean;
  * @date 2014-12-4 上午11:49:59
  *
  */
-public class Song {
+public class Song implements Parcelable {
 
     private String fileName;
     private String title;
@@ -19,6 +22,30 @@ public class Song {
     private String type;
     private String size;
     private String fileUrl;
+
+    protected Song(Parcel in) {
+        fileName = in.readString();
+        title = in.readString();
+        duration = in.readInt();
+        singer = in.readString();
+        album = in.readString();
+        year = in.readString();
+        type = in.readString();
+        size = in.readString();
+        fileUrl = in.readString();
+    }
+
+    public static final Creator<Song> CREATOR = new Creator<Song>() {
+        @Override
+        public Song createFromParcel(Parcel in) {
+            return new Song(in);
+        }
+
+        @Override
+        public Song[] newArray(int size) {
+            return new Song[size];
+        }
+    };
 
     public String getFileName() {
         return fileName;
@@ -118,4 +145,21 @@ public class Song {
                 + size + ", fileUrl=" + fileUrl + "]";
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(fileName);
+        dest.writeString(title);
+        dest.writeInt(duration);
+        dest.writeString(singer);
+        dest.writeString(album);
+        dest.writeString(year);
+        dest.writeString(type);
+        dest.writeString(size);
+        dest.writeString(fileUrl);
+    }
 }

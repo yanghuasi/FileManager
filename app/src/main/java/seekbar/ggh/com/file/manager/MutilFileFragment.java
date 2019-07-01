@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -252,9 +253,14 @@ public class MutilFileFragment extends Fragment {
                     imgFolderBean.setName(name2);
                     imgFolderBean.setDir(path2);
                     if (checkIsImageFile(name2)) {
-                        Intent i2 = new Intent(Intent.ACTION_GET_CONTENT);
-                        File file = new File("系统根目录");
-                        i2.setAction(Intent.ACTION_PICK);
+                        File file = new File(name2);
+                        Intent it = new Intent(Intent.ACTION_VIEW);
+
+                        Uri mUri = Uri.parse(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/sina/weibo/weibo/img-781355347939d43dbbd99c952e1e7bbd.jpg");
+
+                        it.setDataAndType(mUri, "image/*");
+
+                        startActivity(it);
 
                     }
                     //如果显示勾选框时，已经有选中的勾选框，再次点击时取消勾选

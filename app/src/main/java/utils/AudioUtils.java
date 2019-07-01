@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 
 import java.util.ArrayList;
@@ -104,7 +105,8 @@ public class AudioUtils {
         mIntent.setAction(android.content.Intent.ACTION_VIEW);
         Uri uri = Uri.parse("file:///sdcard/a.mp3");//替换成audiopath
         mIntent.setDataAndType(uri , "audio/mp3");
-        IntentUtils.startIntent(mIntent);
+
     }
+
 
 }
