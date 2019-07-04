@@ -35,9 +35,9 @@ public class VideoSearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         final View view = inflater.inflate(R.layout.fragment_search, null);
-        mSearchView = view.findViewById(R.id.search);
-        listView = view.findViewById(R.id.listview);
-        rv = view.findViewById(R.id.rv);
+        mSearchView = (SearchView) view.findViewById(R.id.search);
+        listView = (ListView) view.findViewById(R.id.listview);
+        rv = (ListView) view.findViewById(R.id.rv);
         listView.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, mStrs));
         listView.setTextFilterEnabled(true);
         // 获取所有资源图片

@@ -28,7 +28,7 @@ public class RarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_manager, null);
-        rv=view.findViewById(R.id.rv);
+        rv= (RecyclerView) view.findViewById(R.id.rv);
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()+"/tencent/MicroMsg/Download/";

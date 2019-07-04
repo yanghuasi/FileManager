@@ -55,7 +55,7 @@ import utils.GetFilesUtils;
 
 public class MutilFileFragment extends Fragment {
     private RecyclerView mRcv;
-    private TextView classify;
+    private View classify;
     private ImageView add;
     private CheckBox all;
     private ImageView back;
@@ -116,17 +116,17 @@ public class MutilFileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_manager, null);
         //view.findViewById();
-        classify = view.findViewById(R.id.classify);
-        add = view.findViewById(R.id.add);
-        mRcv = view.findViewById(R.id.rv);
-        all = view.findViewById(R.id.all);
-        back = view.findViewById(R.id.back);
-        title = view.findViewById(R.id.title);
-        search = view.findViewById(R.id.search);
-        newFolder = view.findViewById(R.id.newFolder);
-        paste = view.findViewById(R.id.paste);
-        move = view.findViewById(R.id.move);
-        system= view.findViewById(R.id.system_intent);
+        classify = (TextView) view.findViewById(R.id.classify);
+        add = (ImageView) view.findViewById(R.id.add);
+        mRcv = (RecyclerView) view.findViewById(R.id.rv);
+        all = (CheckBox) view.findViewById(R.id.all);
+        back = (ImageView) view.findViewById(R.id.back);
+        title = (TextView) view.findViewById(R.id.title);
+        search = (RelativeLayout) view.findViewById(R.id.search);
+        newFolder = (RelativeLayout) view.findViewById(R.id.newFolder);
+        paste = (RelativeLayout) view.findViewById(R.id.paste);
+        move = (RelativeLayout) view.findViewById(R.id.move);
+        system= (TextView) view.findViewById(R.id.system_intent);
         checkList = new ArrayList<>();
         checkListPath = new CopyOnWriteArrayList<>();
         mMutilFileAdapter = new MutilFileAdapter(getFiles(path));

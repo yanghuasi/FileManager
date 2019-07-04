@@ -26,12 +26,12 @@ public class PhotoAdapter extends BaseQuickAdapter<ImgFolderBean, BaseViewHolder
         //image如果是图片
         if (item.isFile()){
             helper.setText(R.id.tv_name,item.getName());
-            ImageView imageView = helper.itemView.findViewById (R.id.iv_file);
+            ImageView imageView = (ImageView) helper.itemView.findViewById (R.id.iv_file);
             Glide.with (mContext).load (item.getDir()).into (imageView);
 
         }else {
         helper.setText(R.id.tv_name,item.getName());
-        ImageView imageView = helper.itemView.findViewById (R.id.iv_file);
+        ImageView imageView = (ImageView) helper.itemView.findViewById (R.id.iv_file);
         imageView.setImageResource(R.drawable.ic_file);
        // Glide.with (mContext).load (R.drawable.ic_file).asBitmap().into (imageView);
         }

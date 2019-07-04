@@ -62,10 +62,10 @@ public class UploadPhotoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_manager, null);
-        rv = view.findViewById(R.id.rv);
-        search = view.findViewById(R.id.search);
-        progressBar= view.findViewById(R.id.progress_bar);
-        title= view.findViewById(R.id.title);
+        rv = (RecyclerView) view.findViewById(R.id.rv);
+        search = (RelativeLayout) view.findViewById(R.id.search);
+        progressBar= (ProgressBar) view.findViewById(R.id.progress_bar);
+        title= (TextView) view.findViewById(R.id.title);
         /**
          * 步骤2：创建AsyncTask子类的实例对象（即 任务实例）
          * 注：AsyncTask子类的实例必须在UI线程中创建

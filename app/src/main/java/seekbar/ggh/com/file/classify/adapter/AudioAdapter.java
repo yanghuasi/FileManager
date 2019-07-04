@@ -24,7 +24,7 @@ public class AudioAdapter extends BaseQuickAdapter<Song, BaseViewHolder> {
             helper.setText(R.id.file_name_text, item.getFileName());
             helper.setText(R.id.file_length_text, item.getSize());
         helper.setText(R.id.file_date_added_text, item.getYear());
-            ImageView imageView = helper.itemView.findViewById(R.id.imageView);
+            ImageView imageView = (ImageView) helper.itemView.findViewById(R.id.imageView);
 //            Glide.with( mContext ).load( R.drawable.ic_music ).asBitmap().into( imageView ) ;
             imageView.setImageResource(R.drawable.ic_music);
 //            Glide.with(mContext).load(item.getAlbum()).into(imageView);
@@ -32,7 +32,7 @@ public class AudioAdapter extends BaseQuickAdapter<Song, BaseViewHolder> {
             helper.setText(R.id.file_name_text, "未知名");
 //            helper.setText(R.id.file_length_text, item.getDuration());
 //        helper.setText(R.id.file_date_added_text, item.getDuration());
-            ImageView imageView = helper.itemView.findViewById(R.id.imageView);
+            ImageView imageView = (ImageView) helper.itemView.findViewById(R.id.imageView);
 //            Glide.with( mContext ).load( R.drawable.ic_unknow ).asBitmap().into( imageView ) ;
             imageView.setImageResource(R.drawable.ic_unknow);
 //            Glide.with(mContext).load(R.drawable.ic_unknow).into(imageView);

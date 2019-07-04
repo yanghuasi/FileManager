@@ -40,8 +40,8 @@ public class AudioFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_manager, null);
-        rv=view.findViewById(R.id.rv);
-        search=view.findViewById(R.id.search);
+        rv= (RecyclerView) view.findViewById(R.id.rv);
+        search= (RelativeLayout) view.findViewById(R.id.search);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         audioAdapter = new AudioAdapter(AudioUtils.getAllSongs(getActivity()));
         rv.setAdapter(audioAdapter);

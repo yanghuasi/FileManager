@@ -25,19 +25,19 @@ public class UploadPhotoAdapter extends BaseQuickAdapter<ImgFolderBean, BaseView
         helper.setText(R.id.tv_name, FileManager.extractFileName(item.getDir()));
         //解决下标越界异常
         if (FileManager.getImagePathFromFolder(item.getDir()).size() > 1) {
-            ImageView imageView = helper.itemView.findViewById(R.id.image_one);
+            ImageView imageView = (ImageView) helper.itemView.findViewById(R.id.image_one);
             Glide.with(mContext).load(FileManager.getImagePathFromFolder(item.getDir()).get(0)).into(imageView);
         }
         if (FileManager.getImagePathFromFolder(item.getDir()).size() > 2) {
-            ImageView imageView2 = helper.itemView.findViewById(R.id.image_two);
+            ImageView imageView2 = (ImageView) helper.itemView.findViewById(R.id.image_two);
             Glide.with(mContext).load(FileManager.getImagePathFromFolder(item.getDir()).get(1)).into(imageView2);
         }
         if (FileManager.getImagePathFromFolder(item.getDir()).size() > 3) {
-            ImageView imageView3 = helper.itemView.findViewById(R.id.image_three);
+            ImageView imageView3 = (ImageView) helper.itemView.findViewById(R.id.image_three);
             Glide.with(mContext).load(FileManager.getImagePathFromFolder(item.getDir()).get(2)).into(imageView3);
         }
         if (FileManager.getImagePathFromFolder(item.getDir()).size() > 4) {
-            ImageView imageView4 = helper.itemView.findViewById(R.id.image_four);
+            ImageView imageView4 = (ImageView) helper.itemView.findViewById(R.id.image_four);
             Glide.with(mContext).load(FileManager.getImagePathFromFolder(item.getDir()).get(3)).into(imageView4);
         }
     }

@@ -1,5 +1,6 @@
 package seekbar.ggh.com.file.dialogfragment;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -86,8 +87,8 @@ public class MultiBackgoundFragment extends DialogFragment {
         final View view = inflater.inflate(R.layout.fragment_dialog_asset, null);
         // 获取所有资源图片
 //        mPicturePaths = FileUtil.getAssetPicPath(getActivity());
-        back = view.findViewById(R.id.iv_back);
-        recyclerView = view.findViewById(R.id.recycleview);
+        back = (ImageView) view.findViewById(R.id.iv_back);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycleview);
         address = (TextView) view.findViewById(R.id.tv_address);
 /**
  * 步骤2：创建AsyncTask子类的实例对象（即 任务实例）
@@ -124,6 +125,7 @@ public class MultiBackgoundFragment extends DialogFragment {
 
         }
 
+        @SuppressLint("WrongThread")
         @Override
         protected None doInBackground(None... nones) {
             mPicturePaths = new ArrayList<>();

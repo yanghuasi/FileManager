@@ -21,7 +21,7 @@ public class PhotoAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, String path) {
-        ImageView imageView = helper.itemView.findViewById(R.id.photo);
+        ImageView imageView = (ImageView) helper.itemView.findViewById(R.id.photo);
         Glide.with(mContext).load(path).into(imageView);
 
 

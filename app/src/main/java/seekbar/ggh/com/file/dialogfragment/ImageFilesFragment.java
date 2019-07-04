@@ -94,15 +94,15 @@ public class ImageFilesFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_photo, null);
-        recyclerView = view.findViewById(R.id.recycleview);
-        address= view.findViewById(R.id.tv_address);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycleview);
+        address= (TextView) view.findViewById(R.id.tv_address);
         if (name .equals("0")){
             address.setText("album");
         }else {
             address.setText(name);
         }
 //        address.setText("album");
-        back=view.findViewById(R.id.iv_back);
+        back= (ImageView) view.findViewById(R.id.iv_back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

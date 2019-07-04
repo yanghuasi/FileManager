@@ -20,7 +20,7 @@ public class BackgoundAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, String item) {
-        ImageView imageView = helper.itemView.findViewById(R.id.iv_file);
+        ImageView imageView = (ImageView) helper.itemView.findViewById(R.id.iv_file);
 
         Bitmap bitmap = FileUtilss.getAssetsBitmap(mContext,"background/"+item);
         imageView.setImageBitmap(bitmap);

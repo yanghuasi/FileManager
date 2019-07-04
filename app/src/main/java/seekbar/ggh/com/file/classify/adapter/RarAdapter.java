@@ -27,7 +27,7 @@ public class RarAdapter extends BaseQuickAdapter<ImgFolderBean, BaseViewHolder> 
         helper.setText(R.id.tv_name, item.getName());
         helper.setText(R.id.file_date_added_text, FileManager.fileModifyTime(item.getDir()));
         helper.setText(R.id.file_length_text, FileManager.getFileSize(item.getDir()).toString());
-        ImageView imageView = helper.itemView.findViewById(R.id.imageView);
+        ImageView imageView = (ImageView) helper.itemView.findViewById(R.id.imageView);
 //        Glide.with(mContext).load(R.drawable.ic_doc).into(imageView);
         imageView.setImageResource(R.drawable.ic_doc);
 

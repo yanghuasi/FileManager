@@ -25,7 +25,7 @@ public class DocAdapter extends BaseQuickAdapter<ImgFolderBean, BaseViewHolder> 
 //        } catch (JSONException e) {
 //            e.printStackTrace();
 //        }
-        ImageView imageView = helper.itemView.findViewById(R.id.imageView);
+        ImageView imageView = (ImageView) helper.itemView.findViewById(R.id.imageView);
 //        Glide.with(mContext).load(R.drawable.ic_doc).into(imageView);
         imageView.setImageResource(R.drawable.ic_doc);
     }

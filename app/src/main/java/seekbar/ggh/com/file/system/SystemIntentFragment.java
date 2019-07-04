@@ -49,7 +49,7 @@ public class SystemIntentFragment extends Fragment {
     private TextView letterMuilt;
     private TextView dail;
     private TextView map;
-    private TextView gallery;
+    private TextView crop;
     private TextView webside;
     private TextView google;
     private TextView road;
@@ -78,7 +78,7 @@ public class SystemIntentFragment extends Fragment {
         map= view.findViewById(R.id.map);
         google = view.findViewById(R.id.google);
         webside = view.findViewById(R.id.webside);
-        gallery = view.findViewById(R.id.gallery);
+        crop = view.findViewById(R.id.gallery);
         road= view.findViewById(R.id.road);
         road.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,12 +88,15 @@ public class SystemIntentFragment extends Fragment {
                 startActivity(it);
             }
         });
-        gallery.setOnClickListener(new View.OnClickListener() {
+        crop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Uri imageUri = Uri.parse(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/sina/weibo/weibo/img-781355347939d43dbbd99c952e1e7bbd.jpg");
                 Intent intent = new Intent("com.android.camera.action.CROP");
                 intent.setDataAndType(imageUri, "image/*");
+                //添加下面两个语句
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                 // 下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
                 intent.putExtra("crop", "true");
                 //该参数可以不设定用来规定裁剪区的宽高比
@@ -223,10 +226,9 @@ public class SystemIntentFragment extends Fragment {
         uninstallApk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Intent.ACTION_DELETE);
-                intent.setData(Uri.parse("seekbar.ggh.com.file"));//"package:包名"
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                Uri uri = Uri.fromParts("package", "阿里巴巴", null);
+                Intent it = new Intent(Intent.ACTION_DELETE, uri);
+                startActivity(it);
             }
         });
         play.setOnClickListener(new View.OnClickListener() {

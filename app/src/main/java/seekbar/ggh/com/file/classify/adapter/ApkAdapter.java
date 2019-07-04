@@ -24,7 +24,7 @@ public class ApkAdapter extends BaseQuickAdapter<AppInfo, BaseViewHolder> {
         helper.setText(R.id.tv_name,item.getApkName());
 //        helper.setText(R.id.file_length_text,item.getDuration());
 //        helper.setText(R.id.file_date_added_text, item.getDuration());
-        ImageView imageView = helper.itemView.findViewById (R.id.iv_video);
+        ImageView imageView = (ImageView) helper.itemView.findViewById (R.id.iv_video);
 //        Glide.with (mContext).load (item.getIcon()).into (imageView);
         imageView.setImageDrawable(item.getIcon());
 //        Glide.with( mContext ).load( item.getIcon()).asBitmap().into( imageView ) ;

@@ -25,7 +25,7 @@ public class VideoAdapter extends BaseQuickAdapter<Video, BaseViewHolder> {
     protected void convert(BaseViewHolder helper, Video item) {
 
             helper.setText(R.id.tv_name,item.getName());
-        ImageView imageView = helper.itemView.findViewById (R.id.iv_video);
+        ImageView imageView = (ImageView) helper.itemView.findViewById (R.id.iv_video);
 //        Glide.with (mContext).load (VideoUtils.getVideoThumbnail(item.getId())).into (imageView);
         //加载缩略图
         Glide.with( mContext ).load( item.getPath() ).thumbnail(0.1f).into( imageView ) ;

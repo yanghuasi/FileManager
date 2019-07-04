@@ -64,15 +64,15 @@ public class AddDialogFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_dialog_add, null);
         // 获取所有资源图片
 //        mPicturePaths = FileUtil.getAssetPicPath(getActivity());
-        scan = view.findViewById(R.id.scan);
-        newFolder = view.findViewById(R.id.newFolder);
-        uploadPhoto = view.findViewById(R.id.upload_photo);
-        uploadVideo = view.findViewById(R.id.upload_video);
-        uploadDoc = view.findViewById(R.id.upload_doc);
-        uploadMusic = view.findViewById(R.id.upload_music);
-        uploadOther = view.findViewById(R.id.upload_other);
-        newNotes = view.findViewById(R.id.newNotes);
-        cancel = view.findViewById(R.id.cancel);
+        scan = (RelativeLayout) view.findViewById(R.id.scan);
+        newFolder = (RelativeLayout) view.findViewById(R.id.newFolder);
+        uploadPhoto = (RelativeLayout) view.findViewById(R.id.upload_photo);
+        uploadVideo = (RelativeLayout) view.findViewById(R.id.upload_video);
+        uploadDoc = (RelativeLayout) view.findViewById(R.id.upload_doc);
+        uploadMusic = (RelativeLayout) view.findViewById(R.id.upload_music);
+        uploadOther = (RelativeLayout) view.findViewById(R.id.upload_other);
+        newNotes = (RelativeLayout) view.findViewById(R.id.newNotes);
+        cancel = (ImageView) view.findViewById(R.id.cancel);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +84,16 @@ public class AddDialogFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 showInputDialog();
+            }
+        });
+        uploadMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft2 = getFragmentManager().beginTransaction();
+                ft2.replace(R.id.container, new UploadMusicFragment());
+                ft2.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft2.addToBackStack(null);
+                ft2.commit();
             }
         });
         uploadPhoto.setOnClickListener(new View.OnClickListener() {

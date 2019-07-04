@@ -30,15 +30,15 @@ public class ClassifyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_classify, null);
         //view.findViewById();
-        photo =  view.findViewById(R.id.photo);
-        music = view.findViewById(R.id.music);
-        video =  view.findViewById(R.id.video);
-        apk = view.findViewById(R.id.apk);
-        rar = view.findViewById(R.id.rar);
-        doc = view.findViewById(R.id.doc);
-        folder= view.findViewById(R.id.folder);
-        notes= view.findViewById(R.id.notes);
-        cancel= view.findViewById(R.id.cancel);
+        photo = (RelativeLayout) view.findViewById(R.id.photo);
+        music = (RelativeLayout) view.findViewById(R.id.music);
+        video = (RelativeLayout) view.findViewById(R.id.video);
+        apk = (RelativeLayout) view.findViewById(R.id.apk);
+        rar = (RelativeLayout) view.findViewById(R.id.rar);
+        doc = (RelativeLayout) view.findViewById(R.id.doc);
+        folder= (RelativeLayout) view.findViewById(R.id.folder);
+        notes= (RelativeLayout) view.findViewById(R.id.notes);
+        cancel= (ImageView) view.findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

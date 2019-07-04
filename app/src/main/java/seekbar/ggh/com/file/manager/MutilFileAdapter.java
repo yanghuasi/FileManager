@@ -80,58 +80,58 @@ public class MutilFileAdapter extends BaseQuickAdapter<ImgFolderBean, BaseViewHo
             // 获取扩展名
             if (MediaUtils.isImageFileType(item.getDir())) {
                 helper.setText(R.id.tv_name, item.getName());
-                ImageView imageView = helper.itemView.findViewById(R.id.iv_file);
+                ImageView imageView = (ImageView) helper.itemView.findViewById(R.id.iv_file);
                 Glide.with(mContext).load(item.getDir()).into(imageView);
 //                imageView.setImageResource(R.drawable.ic_pic);
             } else if (MediaUtils.isAudioFileType(item.getDir())) {
                 helper.setText(R.id.tv_name, item.getName());
-                ImageView imageView = helper.itemView.findViewById(R.id.iv_file);
+                ImageView imageView = (ImageView) helper.itemView.findViewById(R.id.iv_file);
 //                Glide.with(mContext).load(item.getDir()).into(imageView);
                 imageView.setImageResource(R.drawable.ic_music);
             } else if (MediaUtils.isVideoFileType(item.getDir())) {
                 helper.setText(R.id.tv_name, item.getName());
-                ImageView imageView = helper.itemView.findViewById(R.id.iv_file);
+                ImageView imageView = (ImageView) helper.itemView.findViewById(R.id.iv_file);
                Glide.with( mContext ).load( item.getDir() ).thumbnail(0.1f).into( imageView ) ;
 //                imageView.setImageResource(R.drawable.ic_video);
             }
             else if (FileManager.getFileType(item.getDir())==FileManager.TYPE_APK){
                 helper.setText(R.id.tv_name, item.getName());
-                ImageView imageView = helper.itemView.findViewById(R.id.iv_file);
+                ImageView imageView = (ImageView) helper.itemView.findViewById(R.id.iv_file);
 //                Glide.with(mContext).load(R.drawable.ic_apk).into(imageView);
                 imageView.setImageResource(R.drawable.ic_apk);
             }
             else if (FileManager.getFileType(item.getDir())==FileManager.TYPE_DOC){
                 helper.setText(R.id.tv_name, item.getName());
-                ImageView imageView = helper.itemView.findViewById(R.id.iv_file);
+                ImageView imageView = (ImageView) helper.itemView.findViewById(R.id.iv_file);
 //                Glide.with(mContext).load(R.drawable.ic_doc).into(imageView);
                 imageView.setImageResource(R.drawable.ic_doc);
             }
             else if (FileManager.getFileType(item.getDir())==FileManager.TYPE_ZIP){
                 helper.setText(R.id.tv_name, item.getName());
-                ImageView imageView = helper.itemView.findViewById(R.id.iv_file);
+                ImageView imageView = (ImageView) helper.itemView.findViewById(R.id.iv_file);
 //                Glide.with(mContext).load(R.drawable.ic_rar).into(imageView);
                 imageView.setImageResource(R.drawable.ic_rar);
             }else {
                 helper.setText(R.id.tv_name, item.getName());
-                ImageView imageView = helper.itemView.findViewById(R.id.iv_file);
+                ImageView imageView = (ImageView) helper.itemView.findViewById(R.id.iv_file);
 //                Glide.with(mContext).load(R.drawable.ic_unknow).into(imageView);
                 imageView.setImageResource(R.drawable.ic_unknow);
             }
 
         } else if (file.isDirectory()){
             helper.setText(R.id.tv_name, item.getName());
-            ImageView imageView = helper.itemView.findViewById(R.id.iv_file);
+            ImageView imageView = (ImageView) helper.itemView.findViewById(R.id.iv_file);
             imageView.setImageResource(R.drawable.ic_file);
         } else {
             helper.setText(R.id.tv_name, item.getName());
-            ImageView imageView = helper.itemView.findViewById(R.id.iv_file);
+            ImageView imageView = (ImageView) helper.itemView.findViewById(R.id.iv_file);
 //            Glide.with(mContext).load(R.drawable.ic_unknow).into(imageView);
             imageView.setImageResource(R.drawable.ic_unknow);
         }
         helper.setVisible(R.id.cb, showCheckBox);//初次进入，隐藏checkbox
         helper.setVisible(R.id.like, showLike);
-        CheckBox checkBox = helper.itemView.findViewById(R.id.cb);
-        ImageView like=helper.itemView.findViewById(R.id.like);
+        CheckBox checkBox = (CheckBox) helper.itemView.findViewById(R.id.cb);
+        ImageView like= (ImageView) helper.itemView.findViewById(R.id.like);
         if (showLike){
             like.setVisibility(View.VISIBLE);
         }else {
